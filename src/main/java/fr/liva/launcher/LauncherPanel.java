@@ -3,6 +3,7 @@ package fr.liva.launcher;
 import fr.liva.GuiState;
 import fr.liva.utils.LivaUtils;
 import fr.liva.view.View;
+import fr.liva.view.ViewChat;
 import fr.liva.view.ViewMain;
 import fr.liva.view.ViewOptions;
 import lombok.Getter;
@@ -39,8 +40,13 @@ public class LauncherPanel extends JPanel {
         viewOptions.init();
         viewOptions.add();
 
+        ViewChat viewChat = new ViewChat(this);
+        viewChat.init();
+        viewChat.add();
+
         views.put(GuiState.MAIN, viewMain);
         views.put(GuiState.OPTIONS, viewOptions);
+        views.put(GuiState.CHAT, viewChat);
     }
 
     @Override
@@ -55,6 +61,8 @@ public class LauncherPanel extends JPanel {
     public void setState(GuiState guiState) {
         views.forEach((state, view) -> {
             if (state == guiState) {
+                view.show();
+            } else if (guiState.getSubStates().contains(state)) {
                 view.show();
             } else {
                 view.hide();

@@ -56,18 +56,8 @@ public class ViewMain extends View {
             System.exit(0);
         });
 
-        LivaChatBox chatBox = new LivaChatBox();
-
-        LivaChatArea chatArea = new LivaChatArea();
-
-        LivaButton livaButton = new LivaButton(getPanel(), LivaUtils.getResource("images/icon.png"));
-        livaButton.setBounds(950, 670, 50, 50);
-        livaButton.setAction(LivaActionType.HOVER, () -> {
-            getPanel().setCursor(getPanel().getLauncher().hoverCursor());
-        });
-
 
         // Add Elements
-        addComponent(mainText, playText, optionsText, quitText, play, options, quit, chatBox, chatArea, livaButton);
+        addComponent(mainText, playText, optionsText, quitText, play, options, quit);
     }
 }

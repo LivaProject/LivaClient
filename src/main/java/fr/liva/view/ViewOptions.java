@@ -7,8 +7,6 @@ import fr.liva.components.others.LivaBackwardButton;
 import fr.liva.components.others.LivaText;
 import fr.liva.components.others.LivaTitleText;
 import fr.liva.launcher.LauncherPanel;
-import fr.liva.utils.LivaUtils;
-
 
 public class ViewOptions extends View {
 
