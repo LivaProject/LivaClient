@@ -1,24 +1,19 @@
 package fr.liva;
 
-import java.net.UnknownHostException;
-import java.util.Scanner;
-
 public class LivaClient {
 
-    public static void main(String[] args) throws UnknownHostException {
+    public static final String NAME = "LivaClient";
 
-        LivaClientSocket livaClientSocket = new LivaClientSocket("Client", 2222);
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 800;
 
-        livaClientSocket.sendMessage("Connected");
-        livaClientSocket.sendMessage("OnlinePlayers");
+    public static Launcher launcher;
 
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
 
+        // Launcher
+        launcher = new Launcher();
 
-        while (true) {
-            String line = scanner.nextLine();
-
-            livaClientSocket.sendMessage(line);
-        }
     }
+
 }
