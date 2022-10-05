@@ -1,5 +1,6 @@
-package fr.liva;
+package fr.liva.launcher;
 
+import fr.liva.Main;
 import fr.liva.listeners.LivaMouseEvent;
 import fr.liva.utils.LivaUtils;
 import fr.liva.utils.animate.Animator;
@@ -12,10 +13,10 @@ public class Launcher extends JFrame {
     private LauncherPanel panel;
 
     public Launcher() {
-        panel = new LauncherPanel();
+        panel = new LauncherPanel(this);
 
-        setTitle("LivaLauncher");
-        setSize(1080, 780);
+        setTitle(Main.NAME);
+        setSize(Main.WIDTH, Main.HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -23,10 +24,7 @@ public class Launcher extends JFrame {
         setIconImage(LivaUtils.getResource("images/icon.png"));
 
         // Cursor
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = LivaUtils.getResource("cursors/cursor.png");
-        Cursor cursor = toolkit.createCustomCursor(image , new Point(getX(), getY()), "cursor");
-        setCursor(cursor);
+        setCursor(defaultCursor());
 
         // Panel
         setContentPane(panel);
@@ -37,7 +35,22 @@ public class Launcher extends JFrame {
         addMouseMotionListener(mouseEvent);
         Animator.fadeInFrame(this, 3);
 
+        // Visible
         setVisible(true);
+    }
+
+    public Cursor defaultCursor() {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = LivaUtils.getResource("cursors/cursor.png");
+
+        return toolkit.createCustomCursor(image , new Point(getX(), getY()), "cursor");
+    }
+
+    public Cursor hoverCursor() {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = LivaUtils.getResource("cursors/hover.png");
+
+        return toolkit.createCustomCursor(image , new Point(getX(), getY()), "hover_cursor");
     }
 
 }

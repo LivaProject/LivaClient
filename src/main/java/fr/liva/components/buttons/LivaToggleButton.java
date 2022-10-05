@@ -1,4 +1,4 @@
-package fr.liva.buttons;
+package fr.liva.components.buttons;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

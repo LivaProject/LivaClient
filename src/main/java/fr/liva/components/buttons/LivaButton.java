@@ -1,5 +1,6 @@
-package fr.liva.buttons;
+package fr.liva.components.buttons;
 
+import fr.liva.launcher.LauncherPanel;
 import fr.liva.utils.LivaUtils;
 
 import javax.swing.*;
@@ -11,6 +12,8 @@ import java.util.Map;
 
 public class LivaButton extends JComponent implements MouseListener {
 
+    private LauncherPanel panel;
+
     public Image image;
     public Image hover;
     private boolean activate = false;
@@ -18,12 +21,21 @@ public class LivaButton extends JComponent implements MouseListener {
     private Map<LivaActionType, LivaAction> action = new HashMap<>();
 
     public LivaButton(Image image) {
-        this(image, null);
+        this(image, image);
+    }
+
+    public LivaButton(LauncherPanel panel, Image image) {
+        this(panel, image, image);
     }
 
     public LivaButton(Image image, Image hover) {
+        this(null, image, hover);
+    }
+
+    public LivaButton(LauncherPanel panel, Image image, Image hover) {
         super();
 
+        this.panel = panel;
         this.image = image;
         this.hover = hover;
 
@@ -58,12 +70,22 @@ public class LivaButton extends JComponent implements MouseListener {
     public void mouseEntered(MouseEvent e) {
         activate = true;
 
+        LivaAction action = this.action.get(LivaActionType.HOVER);
+        if (action != null) {
+            action.onAction();
+        }
+
         repaint();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         activate = false;
+
+        LivaAction action = this.action.get(LivaActionType.HOVER);
+        if (action != null) {
+            panel.setCursor(panel.getLauncher().defaultCursor());
+        }
 
         repaint();
     }

@@ -1,11 +1,13 @@
 package fr.liva;
 
-public class LivaClient {
+import fr.liva.launcher.Launcher;
+
+public class Main {
 
     public static final String NAME = "LivaClient";
 
-    public static final int WIDTH = 1200;
-    public static final int HEIGHT = 800;
+    public static final int WIDTH = 1080;
+    public static final int HEIGHT = 780;
 
     public static Launcher launcher;
 

@@ -1,7 +1,7 @@
 package fr.liva.listeners;
 
-import fr.liva.Launcher;
-import fr.liva.LauncherPanel;
+import fr.liva.launcher.Launcher;
+import fr.liva.launcher.LauncherPanel;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

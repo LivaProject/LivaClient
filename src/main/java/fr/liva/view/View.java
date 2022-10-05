@@ -1,5 +1,6 @@
 package fr.liva.view;
 
+import fr.liva.launcher.LauncherPanel;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -9,15 +10,17 @@ import java.util.Arrays;
 import java.util.List;
 
 @Getter
-public abstract class VueMenu {
+public abstract class View {
 
-    private JPanel panel;
+    private LauncherPanel panel;
     private List<Component> components;
 
-    public VueMenu(JPanel panel) {
+    public View(LauncherPanel panel) {
         this.panel = panel;
         this.components = new ArrayList<>();
     }
+
+    public abstract void init();
 
     public void addComponent(Component... components) {
         this.components.addAll(Arrays.asList(components));

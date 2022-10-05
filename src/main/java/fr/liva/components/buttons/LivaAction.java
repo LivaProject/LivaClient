@@ -1,4 +1,4 @@
-package fr.liva.buttons;
+package fr.liva.components.buttons;
 
 public interface LivaAction {
 
