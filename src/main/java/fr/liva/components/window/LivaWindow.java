@@ -8,13 +8,15 @@ import java.awt.*;
 
 public class LivaWindow extends JScrollPane {
 
-    private final Image background = LivaUtils.getResource("window.png");
+    private final Image background = LivaUtils.getResource("images/window.png");
 
     public LivaWindow() {
 
         // Background
         setBounds(Main.WIDTH / 2 - 600 / 2, Main.HEIGHT / 2 - 400 / 2, 600, 400);
+        setBackground(new Color(0, 0, 0, 0));
         setLayout(null);
+        setBorder(null);
     }
 
     @Override

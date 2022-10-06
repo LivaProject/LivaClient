@@ -6,8 +6,6 @@ import fr.thomarz.TClientSocket;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LivaClient extends TClientSocket {
 
@@ -23,10 +21,10 @@ public class LivaClient extends TClientSocket {
         String channel = getChannel(message);
         String[] args = getArgs(message);
 
-        if (channel.equalsIgnoreCase("Connect")) {
-            System.out.println("a");
-            ViewChat viewChat = (ViewChat) panel.getView(ViewChat.class);
-            viewChat.getChatBox().setText(viewChat.getChatBox().getText() + "Connexion au serveur: " + args[0] + "\n");
+        if (channel.equalsIgnoreCase("Leave")) {
+            Main.livaClient = null;
+            panel.refreshRightBox();
+            panel.openWindow("Déconnection", message.replaceFirst(channel + " ", ""));
         } else if (channel.equalsIgnoreCase("Chat")) {
             try {
                 String msg = message.replaceFirst(channel + " ", "").replaceFirst(args[0] + " ", "");
@@ -40,6 +38,25 @@ public class LivaClient extends TClientSocket {
             } catch (Exception e) {
 
             }
+        } else if (channel.equalsIgnoreCase("Message")) {
+            String msg = message.replaceFirst(channel + " ", "");
+
+            ViewChat viewChat = (ViewChat) panel.getView(ViewChat.class);
+            viewChat.getChatBox().setText(viewChat.getChatBox().getText() + msg + "\n");
         }
+    }
+
+    @Override
+    public void onDisconnect() {
+        super.onDisconnect();
+
+        Main.livaClient = null;
+
+        panel.refreshRightBox();
+
+        panel.openWindow("Déconnection", "Vous avez été déconnecté du serveur.");
+
+        ViewChat viewChat = (ViewChat) panel.getView(ViewChat.class);
+        viewChat.getChatBox().setText("");
     }
 }

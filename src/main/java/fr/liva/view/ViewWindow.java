@@ -1,7 +1,6 @@
 package fr.liva.view;
 
 import fr.liva.GuiState;
-import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.others.LivaBackwardButton;
@@ -10,8 +9,6 @@ import fr.liva.components.others.LivaTitleText;
 import fr.liva.components.window.LivaWindow;
 import fr.liva.launcher.LauncherPanel;
 import lombok.Getter;
-
-import java.awt.*;
 
 public class ViewWindow extends View {
 

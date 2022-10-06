@@ -1,9 +1,7 @@
 package fr.liva.view;
 
-import fr.liva.GuiState;
 import fr.liva.LivaClient;
 import fr.liva.Main;
-import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.input.LivaInputField;
@@ -11,10 +9,9 @@ import fr.liva.components.input.LivaPasswordField;
 import fr.liva.components.others.LivaText;
 import fr.liva.launcher.LauncherPanel;
 import fr.liva.utils.LivaUtils;
+import lombok.Getter;
 
-import java.awt.*;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 public class ViewConnect extends View {
 
@@ -23,7 +20,11 @@ public class ViewConnect extends View {
 
     // Fields
     private LivaInputField pseudoField = new LivaInputField();
-    private LivaInputField passwordField = new LivaInputField();
+
+    @Getter
+    private LivaInputField addressField = new LivaInputField();
+
+    @Getter
     private LivaInputField portField = new LivaInputField();
 
     // Buttons
@@ -42,7 +43,7 @@ public class ViewConnect extends View {
 
         // Fields
         pseudoField.setBounds(760, 270, 230, 40);
-        passwordField.setBounds(760, 320, 230, 40);
+        addressField.setBounds(760, 320, 230, 40);
         portField.setBounds(760, 370, 230, 40);
 
         // Buttons
@@ -53,10 +54,12 @@ public class ViewConnect extends View {
                     if (Main.livaClient != null) {
                         Main.livaClient.disconnect();
                     }
-                    Main.livaClient = new LivaClient(pseudoField.getText(), Integer.parseInt(portField.getText()), getPanel(), InetAddress.getByName(passwordField.getText()));
+
+                    Main.livaClient = new LivaClient(pseudoField.getText(), Integer.parseInt(portField.getText()), getPanel(), InetAddress.getByName(addressField.getText()));
 
                     getPanel().getViews(ViewType.RIGHT_BOX).forEach(View::hide);
                     ViewChat viewChat = (ViewChat) getPanel().getView(ViewChat.class);
+                    viewChat.getChatBox().setText("");
                     viewChat.show();
                 } catch (NumberFormatException e) {
                     getPanel().openWindow("Connection", "Erreur<br>Le port saisit est invalide.");
@@ -67,7 +70,7 @@ public class ViewConnect extends View {
         });
 
         // Add Components
-        addComponent(connectText, pseudoField, passwordField, portField, connectButton);
+        addComponent(connectText, pseudoField, addressField, portField, connectButton);
 
     }
 }

@@ -1,6 +1,7 @@
 package fr.liva;
 
 import fr.liva.launcher.Launcher;
+import fr.liva.utils.servers.ServersUtils;
 
 public class Main {
 
@@ -15,7 +16,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Launcher
+        // Load
+        ServersUtils.createServerFile();
+        ServersUtils.loadServers();
+
+        // Start
         launcher = new Launcher();
 
     }

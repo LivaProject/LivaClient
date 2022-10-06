@@ -1,7 +1,6 @@
 package fr.liva.view;
 
 import fr.liva.Main;
-import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.chat.LivaChatField;
@@ -12,8 +11,6 @@ import lombok.Getter;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ScrollPaneUI;
-import javax.swing.plaf.basic.BasicScrollPaneUI;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
 
@@ -46,6 +43,15 @@ public class ViewChat extends View {
         sendButton = new LivaButton(getPanel(), LivaUtils.getResource("buttons/button_toggled_false.png"));
         sendButton.setBounds(980, 680, 30, 30);
         sendButton.setAction(LivaActionType.PRESS, () -> {
+
+            // Command
+            if (chatField.getText().startsWith("/")) {
+                Main.livaClient.sendMessage("Command " + chatField.getText().replaceFirst("/", ""));
+                chatField.setText("");
+                return;
+            }
+
+            // Message
             Main.livaClient.sendMessage("Chat " + Main.livaClient.getName() + " " + chatField.getText());
             chatField.setText("");
         });

@@ -1,4 +1,4 @@
-package fr.liva;
+package fr.liva.view;
 
 public enum ViewType {
 

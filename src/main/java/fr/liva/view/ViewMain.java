@@ -1,7 +1,6 @@
 package fr.liva.view;
 
 import fr.liva.GuiState;
-import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.others.LivaText;
@@ -13,12 +12,12 @@ public class ViewMain extends View {
 
     // Texts
     private LivaTitleText mainText = new LivaTitleText();
-    private LivaText playText = new LivaText();
+    private LivaText serversText = new LivaText();
     private LivaText optionsText = new LivaText();
     private LivaText quitText = new LivaText();
 
     // Buttons
-    private LivaButton playButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
+    private LivaButton serversButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
     private LivaButton optionsButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
     private LivaButton quitButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
 
@@ -30,10 +29,10 @@ public class ViewMain extends View {
     public void init() {
 
         // Texts
-        mainText.setText("SUCE");
+        mainText.setText("Liva");
 
-        playText.setText("Jouer");
-        playText.setBounds(100, 370, 550, 90);
+        serversText.setText("Serveurs");
+        serversText.setBounds(100, 370, 550, 90);
 
         optionsText.setText("Options");
         optionsText.setBounds(100, 490, 550, 90);
@@ -43,9 +42,9 @@ public class ViewMain extends View {
 
 
         // Buttons
-        playButton.setBounds(100, 370, 550, 90);
-        playButton.setAction(LivaActionType.PRESS, () -> {
-            getPanel().openWindow("Beta", "Fonctionnalité non terminée");
+        serversButton.setBounds(100, 370, 550, 90);
+        serversButton.setAction(LivaActionType.PRESS, () -> {
+            getPanel().setState(GuiState.SERVERS);
         });
 
         optionsButton.setBounds(100, 490, 550, 90);
@@ -60,6 +59,6 @@ public class ViewMain extends View {
 
 
         // Add Elements
-        addComponent(mainText, playText, optionsText, quitText, playButton, optionsButton, quitButton);
+        addComponent(mainText, serversText, optionsText, quitText, serversButton, optionsButton, quitButton);
     }
 }

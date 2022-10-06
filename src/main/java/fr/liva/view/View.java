@@ -1,6 +1,5 @@
 package fr.liva.view;
 
-import fr.liva.ViewType;
 import fr.liva.launcher.LauncherPanel;
 import lombok.Getter;
 

@@ -2,7 +2,7 @@ package fr.liva.launcher;
 
 import fr.liva.GuiState;
 import fr.liva.Main;
-import fr.liva.ViewType;
+import fr.liva.view.ViewType;
 import fr.liva.utils.LivaUtils;
 import fr.liva.view.*;
 import lombok.Getter;
@@ -32,9 +32,17 @@ public class LauncherPanel extends JPanel {
         setLayout(null);
 
         // Views
+        ViewWindow viewWindow = new ViewWindow(this);
+        viewWindow.init();
+        viewWindow.add();
+
         ViewMain viewMain = new ViewMain(this);
         viewMain.init();
         viewMain.add();
+
+        ViewServers viewServers = new ViewServers(this);
+        viewServers.init();
+        viewServers.add();
 
         ViewOptions viewOptions = new ViewOptions(this);
         viewOptions.init();
@@ -52,11 +60,8 @@ public class LauncherPanel extends JPanel {
         viewRegister.init();
         viewRegister.add();
 
-        ViewWindow viewWindow = new ViewWindow(this);
-        viewWindow.init();
-        viewWindow.add();
-
         views.put(GuiState.MAIN, viewMain);
+        views.put(GuiState.SERVERS, viewServers);
         views.put(GuiState.OPTIONS, viewOptions);
         views.put(GuiState.CHAT, viewChat);
         views.put(GuiState.CONNECT, viewConnect);
@@ -103,11 +108,17 @@ public class LauncherPanel extends JPanel {
             }
         });
         if (guiState.isMainContent()) {
-            if (Main.livaClient != null) {
-                getView(ViewChat.class).show();
-            } else {
-                getView(ViewConnect.class).show();
-            }
+            refreshRightBox();
+        }
+    }
+
+    public void refreshRightBox() {
+        if (Main.livaClient != null) {
+            getView(ViewConnect.class).hide();
+            getView(ViewChat.class).show();
+        } else {
+            getView(ViewChat.class).hide();
+            getView(ViewConnect.class).show();
         }
     }
 

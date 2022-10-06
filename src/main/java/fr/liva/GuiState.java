@@ -3,13 +3,11 @@ package fr.liva;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @RequiredArgsConstructor
 public enum GuiState {
 
+    SERVERS(true),
     REGISTER(false),
     CONNECT(false),
     CHAT(false),
