@@ -5,8 +5,8 @@ import java.net.UnknownHostException;
 
 public class Server extends TServerSocket {
 
-    public Server(int port) throws UnknownHostException {
-        super("MyServer", port, InetAddress.getByName("127.0.0.1"));
+    public Server(String name, int port) throws UnknownHostException {
+        super(name, port, InetAddress.getByName("127.0.0.1"));
     }
 
     @Override
