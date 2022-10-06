@@ -44,10 +44,22 @@ public class LauncherPanel extends JPanel {
         viewConnect.init();
         viewConnect.add();
 
+        ViewRegister viewRegister = new ViewRegister(this);
+        viewRegister.init();
+        viewRegister.add();
+
+        ViewWindow viewWindow = new ViewWindow(this);
+        viewWindow.init();
+        viewWindow.add();
+
         views.put(GuiState.MAIN, viewMain);
         views.put(GuiState.OPTIONS, viewOptions);
         views.put(GuiState.CHAT, viewChat);
-        views.put(GuiState.CONNECT, viewChat);
+        views.put(GuiState.CONNECT, viewConnect);
+        views.put(GuiState.REGISTER, viewRegister);
+        views.put(GuiState.WINDOW, viewWindow);
+
+        setState(GuiState.MAIN);
     }
 
     @Override

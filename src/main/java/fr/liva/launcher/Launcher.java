@@ -1,6 +1,7 @@
 package fr.liva.launcher;
 
 import fr.liva.Main;
+import fr.liva.components.window.LivaWindow;
 import fr.liva.listeners.LivaMouseEvent;
 import fr.liva.utils.LivaUtils;
 import fr.liva.utils.animate.Animator;

@@ -29,7 +29,7 @@ public class ViewMain extends View {
     public void init() {
 
         // Texts
-        mainText.setText("Liva");
+        mainText.setText("AAA");
 
         playText.setText("Jouer");
         playText.setBounds(100, 370, 550, 90);
@@ -43,6 +43,9 @@ public class ViewMain extends View {
 
         // Buttons
         playButton.setBounds(100, 370, 550, 90);
+        playButton.setAction(LivaActionType.PRESS, () -> {
+            getPanel().setState(GuiState.WINDOW);
+        });
 
         optionsButton.setBounds(100, 490, 550, 90);
         optionsButton.setAction(LivaActionType.PRESS, () -> {

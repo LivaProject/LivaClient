@@ -9,6 +9,8 @@ import fr.liva.launcher.LauncherPanel;
 import fr.liva.utils.LivaUtils;
 import lombok.Getter;
 
+import javax.swing.*;
+
 @Getter
 public class ViewChat extends View {
 

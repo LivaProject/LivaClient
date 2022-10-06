@@ -5,12 +5,16 @@ import java.awt.*;
 
 public class LivaText extends JLabel {
 
-    public LivaText() {
-        setFont(new Font("Serif", Font.PLAIN, 48));
+    public LivaText(int size) {
+        setFont(new Font("Serif", Font.PLAIN, size));
         setForeground(Color.LIGHT_GRAY);
 
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
+    }
+
+    public LivaText() {
+        this(48);
     }
 
     public void setBounds(int x, int y, int width, int height) {

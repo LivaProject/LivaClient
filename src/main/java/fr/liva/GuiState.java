@@ -10,8 +10,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public enum GuiState {
 
+    REGISTER(null),
     CONNECT(null),
     CHAT(null),
+    WINDOW(null),
     MAIN(CONNECT),
     OPTIONS(CHAT);
 
