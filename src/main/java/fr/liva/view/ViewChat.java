@@ -1,6 +1,7 @@
 package fr.liva.view;
 
 import fr.liva.Main;
+import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.chat.LivaChatField;
@@ -22,14 +23,14 @@ public class ViewChat extends View {
     private LivaButton sendButton;
 
     public ViewChat(LauncherPanel panel) {
-        super(panel);
+        super(panel, ViewType.RIGHT_BOX);
     }
 
     @Override
     public void init() {
 
         sendButton = new LivaButton(getPanel(), LivaUtils.getResource("buttons/button_toggled_false.png"));
-        sendButton.setBounds(950, 670, 50, 50);
+        sendButton.setBounds(980, 670, 30, 30);
         sendButton.setAction(LivaActionType.PRESS, () -> {
             Main.livaClient.sendMessage("Chat " + Main.livaClient.getName() + " " + chatField.getText());
             chatField.setText("");

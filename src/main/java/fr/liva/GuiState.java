@@ -10,26 +10,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public enum GuiState {
 
-    REGISTER(null),
-    CONNECT(null),
-    CHAT(null),
-    WINDOW(null),
-    MAIN(CONNECT),
-    OPTIONS(CHAT);
+    REGISTER(false),
+    CONNECT(false),
+    CHAT(false),
+    WINDOW(false),
+    MAIN(true),
+    OPTIONS(true);
 
-    private final GuiState subState;
-
-    public List<GuiState> getSubStates() {
-        List<GuiState> guiStates = new ArrayList<>();
-
-        if (getSubState() == null) {
-            return guiStates;
-        } else {
-            guiStates.add(getSubState());
-        }
-
-        guiStates.addAll(getSubState().getSubStates());
-
-        return guiStates;
-    }
+    private final boolean mainContent;
 }

@@ -20,13 +20,23 @@ public class LivaClient extends TClientSocket {
         String channel = getChannel(message);
         String[] args = getArgs(message);
 
-        try {
-            String msg = message.replaceFirst(channel + " ", "").replaceFirst(args[0] + " ", "");
-
+        if (channel.equalsIgnoreCase("Connect")) {
+            System.out.println("a");
             ViewChat viewChat = (ViewChat) panel.getView(ViewChat.class);
-            viewChat.getChatBox().setText(viewChat.getChatBox().getText() + args[0] + ": " + msg + "\n");
-        } catch (Exception e) {
+            viewChat.getChatBox().setText(viewChat.getChatBox().getText() + "Connexion au serveur: " + args[0] + "\n");
+        } else if (channel.equalsIgnoreCase("Chat")) {
+            try {
+                String msg = message.replaceFirst(channel + " ", "").replaceFirst(args[0] + " ", "");
 
+                if (msg.length() == 0) {
+                    return;
+                }
+
+                ViewChat viewChat = (ViewChat) panel.getView(ViewChat.class);
+                viewChat.getChatBox().setText(viewChat.getChatBox().getText() + args[0] + ": " + msg + "\n");
+            } catch (Exception e) {
+
+            }
         }
     }
 }

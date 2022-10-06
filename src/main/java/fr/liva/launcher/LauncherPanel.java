@@ -1,13 +1,17 @@
 package fr.liva.launcher;
 
 import fr.liva.GuiState;
+import fr.liva.Main;
+import fr.liva.ViewType;
 import fr.liva.utils.LivaUtils;
 import fr.liva.view.*;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LauncherPanel extends JPanel {
@@ -80,15 +84,44 @@ public class LauncherPanel extends JPanel {
         return null;
     }
 
+    public List<View> getViews(ViewType viewType) {
+        List<View> v = new ArrayList<>();
+        for (Map.Entry<GuiState, View> viewEntry : views.entrySet()) {
+            if (viewEntry.getValue().getViewType() == viewType) {
+                v.add(viewEntry.getValue());
+            }
+        }
+        return v;
+    }
+
     public void setState(GuiState guiState) {
-        views.forEach((state, view) -> {
+        getViews().forEach((state, view) -> {
             if (state == guiState) {
-                view.show();
-            } else if (guiState.getSubStates().contains(state)) {
                 view.show();
             } else {
                 view.hide();
             }
         });
+        if (guiState.isMainContent()) {
+            if (Main.livaClient != null) {
+                getView(ViewChat.class).show();
+            } else {
+                getView(ViewConnect.class).show();
+            }
+        }
+    }
+
+    public void openWindow(String title, String text) {
+        ViewWindow viewWindow = (ViewWindow) getView(ViewWindow.class);
+
+        viewWindow.getTitleText().setText(title);
+        viewWindow.getMainText().setText("<html>" + text.replaceAll("\\n", "<br>")  + "</html>");
+
+        setState(GuiState.WINDOW);
+    }
+
+    public void addChatLine(String message) {
+        ViewChat viewChat = (ViewChat) getView(ViewChat.class);
+        viewChat.getChatBox().setText(viewChat.getChatBox().getText() + message + "\n");
     }
 }

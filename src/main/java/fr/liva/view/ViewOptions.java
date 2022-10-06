@@ -1,6 +1,7 @@
 package fr.liva.view;
 
 import fr.liva.GuiState;
+import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.others.LivaBackwardButton;
@@ -18,7 +19,7 @@ public class ViewOptions extends View {
     private LivaButton backwardButton = new LivaBackwardButton();
 
     public ViewOptions(LauncherPanel panel) {
-        super(panel);
+        super(panel, ViewType.RIGHT_BOX);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ViewOptions extends View {
         backwardText.setText("Retour");
         backwardText.setBounds(100, 610, 550, 90);
 
-        mainText.setText("Options");
+        mainText.setText("Paramètres");
 
 
         // Buttons

@@ -3,6 +3,7 @@ package fr.liva.view;
 import fr.liva.GuiState;
 import fr.liva.LivaClient;
 import fr.liva.Main;
+import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.input.LivaInputField;
@@ -28,7 +29,7 @@ public class ViewConnect extends View {
     private LivaButton connectButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
 
     public ViewConnect(LauncherPanel panel) {
-        super(panel);
+        super(panel, ViewType.RIGHT_BOX);
     }
 
     @Override
@@ -52,21 +53,15 @@ public class ViewConnect extends View {
                         Main.livaClient.disconnect();
                     }
                     Main.livaClient = new LivaClient(pseudoField.getText(), Integer.parseInt(portField.getText()), getPanel());
+
+                    getPanel().getViews(ViewType.RIGHT_BOX).forEach(View::hide);
+                    ViewChat viewChat = (ViewChat) getPanel().getView(ViewChat.class);
+                    viewChat.show();
                 } catch (NumberFormatException e) {
-                    ViewWindow viewWindow = (ViewWindow) getPanel().getView(ViewWindow.class);
-
-                    viewWindow.getTitleText().setText("Connection");
-                    viewWindow.getMainText().setText("<html>Erreur:<br>Le port saisie doit être un entier.</html>");
-
-                    getPanel().setState(GuiState.WINDOW);
+                    getPanel().openWindow("Connection", "Erreur<br>Le port saisit est invalide.");
                 }
             } catch (Exception e) {
-                ViewWindow viewWindow = (ViewWindow) getPanel().getView(ViewWindow.class);
-
-                viewWindow.getTitleText().setText("Connection");
-                viewWindow.getMainText().setText("<html>Erreur:<br>Impossible de contacter le sevreur.</html>");
-
-                getPanel().setState(GuiState.WINDOW);
+                getPanel().openWindow("Connection", "Erreur<br>Impossible de contacter le serveur.");
             }
         });
 

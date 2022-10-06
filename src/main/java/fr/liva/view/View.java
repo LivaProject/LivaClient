@@ -1,5 +1,6 @@
 package fr.liva.view;
 
+import fr.liva.ViewType;
 import fr.liva.launcher.LauncherPanel;
 import lombok.Getter;
 
@@ -14,9 +15,12 @@ public abstract class View {
     private LauncherPanel panel;
     private List<Component> components;
 
-    public View(LauncherPanel panel) {
+    private ViewType viewType;
+
+    public View(LauncherPanel panel, ViewType viewType) {
         this.panel = panel;
         this.components = new ArrayList<>();
+        this.viewType = viewType;
     }
 
     public abstract void init();

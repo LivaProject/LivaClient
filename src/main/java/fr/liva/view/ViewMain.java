@@ -1,6 +1,7 @@
 package fr.liva.view;
 
 import fr.liva.GuiState;
+import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.others.LivaText;
@@ -22,14 +23,14 @@ public class ViewMain extends View {
     private LivaButton quitButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
 
     public ViewMain(LauncherPanel panel) {
-        super(panel);
+        super(panel, ViewType.MAIN);
     }
 
     @Override
     public void init() {
 
         // Texts
-        mainText.setText("AAA");
+        mainText.setText("Liva");
 
         playText.setText("Jouer");
         playText.setBounds(100, 370, 550, 90);
@@ -44,7 +45,7 @@ public class ViewMain extends View {
         // Buttons
         playButton.setBounds(100, 370, 550, 90);
         playButton.setAction(LivaActionType.PRESS, () -> {
-            getPanel().setState(GuiState.WINDOW);
+            getPanel().openWindow("Beta", "Fonctionnalité non terminée");
         });
 
         optionsButton.setBounds(100, 490, 550, 90);

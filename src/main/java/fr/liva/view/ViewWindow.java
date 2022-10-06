@@ -1,6 +1,7 @@
 package fr.liva.view;
 
 import fr.liva.GuiState;
+import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.others.LivaBackwardButton;
@@ -30,7 +31,7 @@ public class ViewWindow extends View {
     private LivaButton closeButton = new LivaBackwardButton();
 
     public ViewWindow(LauncherPanel panel) {
-        super(panel);
+        super(panel, ViewType.WINDOW);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package fr.liva.view;
 
+import fr.liva.ViewType;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
 import fr.liva.components.input.LivaInputField;
@@ -21,7 +22,7 @@ public class ViewRegister extends View {
     private LivaButton registerButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
 
     public ViewRegister(LauncherPanel panel) {
-        super(panel);
+        super(panel, ViewType.RIGHT_BOX);
     }
 
     @Override
