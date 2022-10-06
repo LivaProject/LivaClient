@@ -10,8 +10,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public enum GuiState {
 
+    CONNECT(null),
     CHAT(null),
-    MAIN(CHAT),
+    MAIN(CONNECT),
     OPTIONS(CHAT);
 
     private final GuiState subState;

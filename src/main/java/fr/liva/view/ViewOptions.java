@@ -15,7 +15,7 @@ public class ViewOptions extends View {
     private LivaText backwardText = new LivaText();
 
     // Buttons
-    private LivaButton backward = new LivaBackwardButton();
+    private LivaButton backwardButton = new LivaBackwardButton();
 
     public ViewOptions(LauncherPanel panel) {
         super(panel);
@@ -32,12 +32,12 @@ public class ViewOptions extends View {
 
 
         // Buttons
-        backward.setAction(LivaActionType.PRESS, () -> {
+        backwardButton.setAction(LivaActionType.PRESS, () -> {
             getPanel().setState(GuiState.MAIN);
         });
 
 
         // Add Elements
-        addComponent(mainText, backwardText, backward);
+        addComponent(mainText, backwardText, backwardButton);
     }
 }

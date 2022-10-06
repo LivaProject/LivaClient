@@ -3,8 +3,6 @@ package fr.liva.view;
 import fr.liva.GuiState;
 import fr.liva.components.buttons.LivaActionType;
 import fr.liva.components.buttons.LivaButton;
-import fr.liva.components.chat.LivaChatArea;
-import fr.liva.components.chat.LivaChatBox;
 import fr.liva.components.others.LivaText;
 import fr.liva.components.others.LivaTitleText;
 import fr.liva.launcher.LauncherPanel;
@@ -19,9 +17,9 @@ public class ViewMain extends View {
     private LivaText quitText = new LivaText();
 
     // Buttons
-    private LivaButton play = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
-    private LivaButton options = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
-    private LivaButton quit = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
+    private LivaButton playButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
+    private LivaButton optionsButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
+    private LivaButton quitButton = new LivaButton(LivaUtils.getResource("buttons/button.png"), LivaUtils.getResource("buttons/button_hover.png"));
 
     public ViewMain(LauncherPanel panel) {
         super(panel);
@@ -44,20 +42,20 @@ public class ViewMain extends View {
 
 
         // Buttons
-        play.setBounds(100, 370, 550, 90);
+        playButton.setBounds(100, 370, 550, 90);
 
-        options.setBounds(100, 490, 550, 90);
-        options.setAction(LivaActionType.PRESS, () -> {
+        optionsButton.setBounds(100, 490, 550, 90);
+        optionsButton.setAction(LivaActionType.PRESS, () -> {
             getPanel().setState(GuiState.OPTIONS);
         });
 
-        quit.setBounds(100, 610, 550, 90);
-        quit.setAction(LivaActionType.PRESS, () -> {
+        quitButton.setBounds(100, 610, 550, 90);
+        quitButton.setAction(LivaActionType.PRESS, () -> {
             System.exit(0);
         });
 
 
         // Add Elements
-        addComponent(mainText, playText, optionsText, quitText, play, options, quit);
+        addComponent(mainText, playText, optionsText, quitText, playButton, optionsButton, quitButton);
     }
 }

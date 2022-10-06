@@ -3,7 +3,6 @@ package fr.liva.view;
 import fr.liva.launcher.LauncherPanel;
 import lombok.Getter;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;

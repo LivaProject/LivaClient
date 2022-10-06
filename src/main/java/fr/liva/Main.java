@@ -11,6 +11,8 @@ public class Main {
 
     public static Launcher launcher;
 
+    public static LivaClient livaClient = null;
+
     public static void main(String[] args) {
 
         // Launcher

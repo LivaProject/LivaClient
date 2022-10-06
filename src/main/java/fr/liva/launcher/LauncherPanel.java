@@ -2,10 +2,7 @@ package fr.liva.launcher;
 
 import fr.liva.GuiState;
 import fr.liva.utils.LivaUtils;
-import fr.liva.view.View;
-import fr.liva.view.ViewChat;
-import fr.liva.view.ViewMain;
-import fr.liva.view.ViewOptions;
+import fr.liva.view.*;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -18,13 +15,12 @@ public class LauncherPanel extends JPanel {
     @Getter
     private Launcher launcher;
 
-    public final Map<GuiState, View> views = new HashMap<>();
+    @Getter
+    private final Map<GuiState, View> views = new HashMap<>();
 
-    // Images
-    private Image background = LivaUtils.getResource("images/background.png");
+    private final Image background = LivaUtils.getResource("images/background.png");
 
     public LauncherPanel(Launcher launcher) {
-
         this.launcher = launcher;
 
         // Background
@@ -44,9 +40,14 @@ public class LauncherPanel extends JPanel {
         viewChat.init();
         viewChat.add();
 
+        ViewConnect viewConnect = new ViewConnect(this);
+        viewConnect.init();
+        viewConnect.add();
+
         views.put(GuiState.MAIN, viewMain);
         views.put(GuiState.OPTIONS, viewOptions);
         views.put(GuiState.CHAT, viewChat);
+        views.put(GuiState.CONNECT, viewChat);
     }
 
     @Override
@@ -56,6 +57,15 @@ public class LauncherPanel extends JPanel {
         LivaUtils.drawFullsizedImage(g, this, background);
 
         repaint();
+    }
+
+    public View getView(Class<? extends View> v) {
+        for (Map.Entry<GuiState, View> viewEntry : views.entrySet()) {
+            if (viewEntry.getValue().getClass() == v) {
+                return viewEntry.getValue();
+            }
+        }
+        return null;
     }
 
     public void setState(GuiState guiState) {
