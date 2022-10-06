@@ -3,7 +3,7 @@ import java.net.UnknownHostException;
 public class MainServer {
 
     public static void main(String[] args) throws UnknownHostException {
-        Server server = new Server("LivaServer", 12540);
+        Server server = new Server("LivaServer", 12345);
     }
 
 }

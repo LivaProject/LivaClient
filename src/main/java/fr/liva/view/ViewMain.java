@@ -30,7 +30,7 @@ public class ViewMain extends View {
     public void init() {
 
         // Texts
-        mainText.setText("Liva");
+        mainText.setText("SUCE");
 
         playText.setText("Jouer");
         playText.setBounds(100, 370, 550, 90);

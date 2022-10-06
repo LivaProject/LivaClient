@@ -13,6 +13,7 @@ import fr.liva.launcher.LauncherPanel;
 import fr.liva.utils.LivaUtils;
 
 import java.awt.*;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class ViewConnect extends View {
@@ -22,7 +23,7 @@ public class ViewConnect extends View {
 
     // Fields
     private LivaInputField pseudoField = new LivaInputField();
-    private LivaPasswordField passwordField = new LivaPasswordField();
+    private LivaInputField passwordField = new LivaInputField();
     private LivaInputField portField = new LivaInputField();
 
     // Buttons
@@ -52,7 +53,7 @@ public class ViewConnect extends View {
                     if (Main.livaClient != null) {
                         Main.livaClient.disconnect();
                     }
-                    Main.livaClient = new LivaClient(pseudoField.getText(), Integer.parseInt(portField.getText()), getPanel());
+                    Main.livaClient = new LivaClient(pseudoField.getText(), Integer.parseInt(portField.getText()), getPanel(), InetAddress.getByName(passwordField.getText()));
 
                     getPanel().getViews(ViewType.RIGHT_BOX).forEach(View::hide);
                     ViewChat viewChat = (ViewChat) getPanel().getView(ViewChat.class);

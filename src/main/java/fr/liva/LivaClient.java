@@ -4,14 +4,17 @@ import fr.liva.launcher.LauncherPanel;
 import fr.liva.view.ViewChat;
 import fr.thomarz.TClientSocket;
 
+import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LivaClient extends TClientSocket {
 
     private LauncherPanel panel;
 
-    public LivaClient(String name, int port, LauncherPanel panel) throws UnknownHostException {
-        super(name, port);
+    public LivaClient(String name, int port, LauncherPanel panel, InetAddress ip) throws UnknownHostException {
+        super(name, port, ip);
         this.panel = panel;
     }
 

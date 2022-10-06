@@ -6,7 +6,7 @@ import java.awt.*;
 public class LivaChatField extends JTextArea {
 
     public LivaChatField() {
-        setBounds(740, 670, 235, 30);
+        setBounds(740, 680, 235, 30);
 
         setBackground(Color.decode("#99948E"));
     }
